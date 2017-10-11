@@ -25,11 +25,11 @@ class MyListActivity : AppCompatActivity() {
         adapter.fetchList()
 
 
-//        adapter.setListClickListener(object : MyListAdapter.ClickListener) {
-//            override fun onListClick(position: Int) {
-//
-//            }
-//        }
+        adapter.setOnListClickListener(object : MyListAdapter.ClickListener {
+            override fun onListClick(position: Int) {
+//                Toast.makeText(this@MyListActivity, "Position:" + position, Toast.LENGTH_SHORT).show()
+            }
+        })
 
 
     }
