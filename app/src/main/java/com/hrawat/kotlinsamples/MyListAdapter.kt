@@ -45,6 +45,18 @@ class MyListAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.Vi
             items.add(ItemModel("kumar", "delhi", "2001"))
             items.add(ItemModel("Singh", "hld", "2015"))
             items.add(ItemModel("Deepak", "noida", "2000"))
+            items.add(ItemModel("ravi", "punjab", "2010"))
+            items.add(ItemModel("kumar", "delhi", "2001"))
+            items.add(ItemModel("Singh", "hld", "2015"))
+            items.add(ItemModel("Deepak", "noida", "2000"))
+            items.add(ItemModel("ravi", "punjab", "2010"))
+            items.add(ItemModel("kumar", "delhi", "2001"))
+            items.add(ItemModel("Singh", "hld", "2015"))
+            items.add(ItemModel("Deepak", "noida", "2000"))
+            items.add(ItemModel("ravi", "punjab", "2010"))
+            items.add(ItemModel("kumar", "delhi", "2001"))
+            items.add(ItemModel("Singh", "hld", "2015"))
+            items.add(ItemModel("Deepak", "noida", "2000"))
 
             isLoading = false
             this.notifyDataSetChanged()
@@ -72,11 +84,15 @@ class MyListAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.Vi
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         when (viewType) {
-            TYPE_LIST -> return MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_list, parent, false))
+            TYPE_LIST -> return MyViewHolder(LayoutInflater.from(context).
+                    inflate(R.layout.item_list, parent, false))
 
-            TYPE_LOADING -> return LoadingViewHolder((LayoutInflater.from(context).inflate(R.layout.item_loading, parent, false)))
-            TYPE_EMPTY -> return EmptyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_empty, parent, false))
-            else -> return EmptyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_empty, parent, false))
+            TYPE_LOADING -> return LoadingViewHolder((LayoutInflater.from(context).
+                    inflate(R.layout.item_loading, parent, false)))
+            TYPE_EMPTY -> return EmptyViewHolder(LayoutInflater.from(context).
+                    inflate(R.layout.item_empty, parent, false))
+            else -> return EmptyViewHolder(LayoutInflater.from(context).
+                    inflate(R.layout.item_empty, parent, false))
         }
 
     }
