@@ -120,7 +120,7 @@ class MyListAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.Vi
     }
 
 
-    private inner class MyViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.findViewById(R.id.title)
         val tvAddress: TextView = itemView.findViewById(R.id.address)
         val tvYear: TextView = itemView.findViewById(R.id.year)
@@ -128,8 +128,8 @@ class MyListAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.Vi
 
     }
 
-    private inner class EmptyViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView)
-    private inner class LoadingViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class EmptyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class LoadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
 
 }
