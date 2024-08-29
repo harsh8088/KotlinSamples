@@ -2,13 +2,14 @@ package com.hrawat.kotlinsamples
 
 import android.content.Context
 import android.os.Handler
-import android.support.v7.widget.RecyclerView
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Created by hrawat on 10/11/2017.
@@ -36,8 +37,8 @@ class MyListAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.Vi
 
     fun fetchList() {
         startLoading()
-
-        Handler().postDelayed({
+        items.clear()
+        Handler(Looper.getMainLooper()).postDelayed({
             /* Create an Intent that will start the Menu-Activity. */
             items.add(ItemModel("john", "sec 50, noida", "2013"))
             items.add(ItemModel("arjun", "delhi", "2011"))
@@ -66,7 +67,14 @@ class MyListAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.Vi
     }
 
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
+    override fun getItemCount(): Int {
+        if (isLoading)
+            return 1
+        else
+            return if (items.size == 0) 1 else items.size
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is MyViewHolder) {
             val myViewHolder = holder
             val details = items[position]
@@ -81,27 +89,24 @@ class MyListAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
-
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         when (viewType) {
-            TYPE_LIST -> return MyViewHolder(LayoutInflater.from(context).
-                    inflate(R.layout.item_list, parent, false))
+            TYPE_LIST -> return MyViewHolder(
+                LayoutInflater.from(context).inflate(R.layout.item_list, parent, false)
+            )
 
-            TYPE_LOADING -> return LoadingViewHolder((LayoutInflater.from(context).
-                    inflate(R.layout.item_loading, parent, false)))
-            TYPE_EMPTY -> return EmptyViewHolder(LayoutInflater.from(context).
-                    inflate(R.layout.item_empty, parent, false))
-            else -> return EmptyViewHolder(LayoutInflater.from(context).
-                    inflate(R.layout.item_empty, parent, false))
+            TYPE_LOADING -> return LoadingViewHolder(
+                (LayoutInflater.from(context).inflate(R.layout.item_loading, parent, false))
+            )
+
+            TYPE_EMPTY -> return EmptyViewHolder(
+                LayoutInflater.from(context).inflate(R.layout.item_empty, parent, false)
+            )
+
+            else -> return EmptyViewHolder(
+                LayoutInflater.from(context).inflate(R.layout.item_empty, parent, false)
+            )
         }
-
-    }
-
-    override fun getItemCount(): Int {
-        if (isLoading)
-            return 1
-        else
-            return if (items.size == 0) 1 else items.size
     }
 
     override fun getItemViewType(position: Int): Int {
