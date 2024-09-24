@@ -14,18 +14,18 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * Created by hrawat on 10/11/2017.
  */
-class MyListAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var items: ArrayList<ItemModel> = ArrayList()
+class MyListAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private var items: ArrayList<ItemModel> = ArrayList()
 
-    var isLoading: Boolean = false
+    private var isLoading: Boolean = false
 
     companion object {
-        private val TYPE_LOADING = 1
-        private val TYPE_LIST = TYPE_LOADING + 1
-        private val TYPE_EMPTY = TYPE_LIST + 1
+        private const val TYPE_LOADING = 1
+        private const val TYPE_LIST = TYPE_LOADING + 1
+        private const val TYPE_EMPTY = TYPE_LIST + 1
     }
 
-    lateinit var clickListener: ClickListener
+    private lateinit var clickListener: ClickListener
 
     interface ClickListener {
         fun onListClick(position: Int)
@@ -68,21 +68,20 @@ class MyListAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.Vi
 
 
     override fun getItemCount(): Int {
-        if (isLoading)
-            return 1
+        return if (isLoading)
+            1
         else
-            return if (items.size == 0) 1 else items.size
+            if (items.size == 0) 1 else items.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is MyViewHolder) {
-            val myViewHolder = holder
             val details = items[position]
 
-            myViewHolder.tvName.text = details.name
-            myViewHolder.tvAddress.text = details.address
-            myViewHolder.tvYear.text = details.year
-            myViewHolder.relativeLayout.setOnClickListener {
+            holder.tvName.text = details.name
+            holder.tvAddress.text = details.address
+            holder.tvYear.text = details.year
+            holder.relativeLayout.setOnClickListener {
                 clickListener.onListClick(position)
                 Toast.makeText(context, "name:" + details.name, Toast.LENGTH_SHORT).show()
             }
@@ -110,16 +109,16 @@ class MyListAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.Vi
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (isLoading)
-            return TYPE_LOADING
+        return if (isLoading)
+            TYPE_LOADING
         else
             if (items.size == 0)
-                return TYPE_EMPTY
+                TYPE_EMPTY
             else
-                return TYPE_LIST
+                TYPE_LIST
     }
 
-    fun startLoading() {
+    private fun startLoading() {
         this.isLoading = true
         notifyDataSetChanged()
     }

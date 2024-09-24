@@ -31,10 +31,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
+                android:text="Username"
                 android:textColor="@android:color/black"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:text="Username" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/address"

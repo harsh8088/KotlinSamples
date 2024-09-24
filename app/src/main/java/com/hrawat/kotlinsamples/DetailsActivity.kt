@@ -21,7 +21,7 @@ class DetailsActivity : AppCompatActivity() {
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val intent = intent
+        val intent = this.intent
 
         if (intent.hasExtra("index")) {
             // Intent is from passed data
@@ -80,7 +80,6 @@ class DetailsActivity : AppCompatActivity() {
             ItemModel("Singh", "hld", "2015"),
             ItemModel("Deepak", "noida", "2000")
         )
-
         return items
     }
 

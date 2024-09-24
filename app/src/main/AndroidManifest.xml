@@ -10,20 +10,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyListActivity"
-            android:label="List">
-        </activity>
-        <activity android:name=".DetailsActivity"
+        <activity
+            android:name=".MyListActivity"
+            android:label="List"/>
+        <activity
+            android:name=".DetailsActivity"
             android:exported="true"
             android:label="Details">
-            <intent-filter android:autoVerify="true"
+            <intent-filter
+                android:autoVerify="true"
                 tools:targetApi="m">
                 <action android:name="android.intent.action.VIEW" />
 
